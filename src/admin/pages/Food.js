@@ -92,8 +92,7 @@ export default class AddFood extends Component {
             }).catch((err) => console.log(err.response))
     }
   
-    addFood = (e) => {
-        e.preventDefault();
+    addFood = () => {
         const data = new FormData()
         data.append('imageFile', this.state.selectedFile)
         axios.post('http://localhost:3002/upload', data, this.state.config)
@@ -111,6 +110,7 @@ export default class AddFood extends Component {
                 }, this.state.config)
                     .then((response) => {
                         console.log(response);
+                        alert("Food added successfully");
                         window.location.reload();
                     })
                     .catch((err) => console.log(err.response))
@@ -134,14 +134,14 @@ export default class AddFood extends Component {
                     </Col>
                 </Row>
                 <hr/>
-                <Form style={{backgroundColor:'#EAF2F8'}} className="col-10">
+                <form style={{backgroundColor:'#EAF2F8'}} className="col-10">
                     <Row>
                         <Col md={4}>
                             <FormGroup>
                                 <Label for='foodname'>
                                     <legend style={{fontSize:18}}>Food Name</legend>
                                 </Label>
-                                <Input type='text' id="foodname" name='foodname' onChange={this.handleChange}/>
+                                <Input type='text' id="foodname" name='foodname' onChange={this.handleChange} required/>
                             </FormGroup>
                         </Col>
                         <Col md={4}>
@@ -153,6 +153,7 @@ export default class AddFood extends Component {
                                     customInput={Input} 
                                     onChange={ this.handleChange}
                                     thousandSeparator 
+                                    required
                                 />
                             </FormGroup>
                         </Col>
@@ -202,9 +203,9 @@ export default class AddFood extends Component {
                             <img alt="Img Preview" style={{width:200}} src={this.state.imgPreview}/><hr/>
                          </Col>
                     </Row>
-                    <Button color='success' onClick={this.addFood} block>Add Food</Button>
-                <hr/>
-                </Form>
+                    <Button type="submit" color='success' onClick={this.addFood} block>Add Food</Button>
+                <br/>
+                </form>
               <ListFoods />
 
               <Modal isOpen={this.state.modal}>

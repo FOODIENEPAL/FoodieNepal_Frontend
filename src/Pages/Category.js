@@ -153,11 +153,12 @@ export default class Category extends Component {
                     <Row>
                         {this.state.category.map(catIcon =>
                         <Col>
-                            <div key={catIcon._id}>
-                                <img alt="catPic" onClick={()=>this.searchFood(catIcon._id, catIcon.category)} 
-                                    style={{marginLeft:30, width:'40px', height:'40px'}}
+                            <div key={catIcon._id} onClick={()=>this.searchFood(catIcon._id, catIcon.category)} style={{cursor:'pointer'}}>
+                                <img alt="catPic" 
+                                    style={{ width:'40px', height:'40px'}}
                                     className="categoryList"
                                     src ={`http://localhost:3002/uploads/${catIcon.catImg}`} id="catImg"/> 
+                                <h6 className="text-center">{catIcon.category}</h6>
                             </div>
                         </Col>
                         )}

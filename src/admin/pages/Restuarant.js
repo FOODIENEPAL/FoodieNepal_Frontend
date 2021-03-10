@@ -53,7 +53,6 @@ export default class AddRestuarant extends Component {
           Axios.post('http://localhost:3002/resturants',this.state,this.state.config)
           .then((response) => {
             alert("Restaurant added successfully");
-            window.location.reload(false)
             console.log(response.data)
           })
           .catch((err) => console.log(err.response))
@@ -82,7 +81,7 @@ export default class AddRestuarant extends Component {
                     <Label className="btn btn-outline-info float-left" htmlFor="filePicker">Upload image for restaurant</Label>
                     <Input id="filePicker" style={{visibility:"hidden"}} type='file' name='res_image' onChange={this.handleFileSelect}/>
                   </FormGroup>
-                  <Button color='success' onClick={this.addRest} block>Add Resturant</Button>
+                  <Button type="submit" color='success' onClick={this.addRest} block>Add Resturant</Button>
               </form>
             </div>
             <div className="col-md-4 flex">
